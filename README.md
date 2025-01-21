@@ -7,10 +7,10 @@ This project leverages machine learning to predict trends in antisemitism by ana
 	•	Step-by-step development with version control.
 
 ## Goals:
-	•	Raise awareness of antisemitism trends.
+	•	Raise awareness of antisemitism trends across college campuses.
 	•	Enable proactive measures through predictive insights.
 
 ## Technologies Used:
-	•	Python (pandas, scikit-learn, nltk)
-	•	Data Visualization (matplotlib, seaborn)
+	•	Python (pandas)
+	•	Data Visualization (matplotlib)
 	•	Git for version control
