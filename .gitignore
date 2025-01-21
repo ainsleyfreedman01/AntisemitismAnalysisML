@@ -3,3 +3,4 @@ __pycache__/
 *.xlsx
 antisemitism_env/
 .DS_Store
+data/*.csv
