@@ -1,8 +1,7 @@
 import pandas as pd
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import accuracy_score, classification_report
 import numpy as np
 
 # Load the dataset
@@ -156,5 +155,3 @@ print("\nTop Jewish holidays with the most incidents:\n", jewish_holiday_inciden
 
 # Display the top National holidays with the most incidents
 print("\nTop National holidays with the most incidents:\n", national_holiday_incidents.head(10))
-
-######################################################
