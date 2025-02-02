@@ -59,6 +59,6 @@ plt.xlabel('Year')
 plt.ylabel('Incident Count')
 plt.title('Prediction of Antisemtic Incident Counts on College Campuses by Year (Log-Linear Model)', fontsize=10)
 plt.legend()
-plt.show()
 
 plt.savefig('visualizations/loglinear_model.png', bbox_inches='tight', dpi=300)
+plt.show()
