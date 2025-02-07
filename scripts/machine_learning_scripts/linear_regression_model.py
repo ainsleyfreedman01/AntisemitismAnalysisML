@@ -50,7 +50,7 @@ plt.plot(next_5_years['Year'], predictions, 'ro', label='Predicted Incident Coun
 # Labels and title
 plt.xlabel('Year')
 plt.ylabel('Incident Count')
-plt.title('Prediction of Antisemtic Incident Counts on College Campuses by Year (Linear Regression Model)', fontsize=10)
+plt.title('Prediction of Antisemitic Incident Counts on College Campuses by Year (Linear Regression Model)', fontsize=10)
 plt.legend()
 
 plt.savefig('visualizations/linear_regression_model.png', bbox_inches='tight', dpi=300)
