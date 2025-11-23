@@ -1,4 +1,4 @@
-# Antisemitism Trends Analysis
+# Analyzing Antisemitism: Insights with ML
 
 This is the analysis repository for campus antisemitism incidents and related trends.  
 It centralizes the data cleaning, holiday-labeling, visualization, and modeling used to explore patterns of incidents and test hypotheses such as whether protests are more likely on Jewish holidays.
@@ -20,7 +20,7 @@ The focus wasn’t just analysis — it was creating a sustainable, well-documen
 This project emphasized data integrity, reproducibility, and clear presentation of results.
 
 Major areas of focus included:
-- Cleaning and normalizing raw incident rows from `data/campus_reports.csv`  
+- Cleaning and normalizing raw incident rows from `data/campus_reports.csv` (2000+ individual incident reports)
 - Implementing robust holiday labeling (including a canonical per-day expansion of user-provided Jewish holiday ranges)  
 - Aggregating events into daily metrics and building inspection CSVs for manual review  
 - Building short, executable notebooks to reproduce figures and statistical tests  
