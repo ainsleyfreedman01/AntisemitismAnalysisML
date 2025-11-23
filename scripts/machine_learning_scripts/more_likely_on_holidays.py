@@ -152,6 +152,9 @@ def load_and_prepare(path: str):
 						# Shavuot: Sivan 6-7 (diaspora 2 days sometimes 6-7)
 						if (in_range(3, 6, 7)):
 							return 1
+						# Tisha B'Av: Av 9 (month number 5 in pyluach mapping)
+						if in_range(5, 9, 9):
+							return 1
 						return 0
 					except Exception:
 						return 0
@@ -188,8 +191,35 @@ def load_and_prepare(path: str):
 
 					daily['is_jewish_holiday'] = daily['Date'].apply(_is_jewish_convert)
 				except Exception:
-					# last fallback: leave zeros
-					pass
+						# last fallback: leave zeros
+							pass
+
+	# If still no jewish holidays detected, use the user-provided hardcoded list
+	if daily['is_jewish_holiday'].sum() == 0:
+		try:
+			from scripts.machine_learning_scripts.hardcoded_jewish_holidays import get_hardcoded_jewish_holidays
+			holidays = get_hardcoded_jewish_holidays()
+			# holidays is a list of {'date': date, 'name': name}
+			hol_set = set([h['date'] for h in holidays])
+			name_map = {h['date']: h['name'] for h in holidays}
+			# mark days
+			daily['is_jewish_holiday'] = daily['Date'].apply(lambda d: 1 if d.date() in hol_set else 0)
+			# fill holiday_type for matches (append to existing holiday_type if present)
+			def _map_holiday_name(d):
+				name = name_map.get(d.date()) if d.date() in name_map else None
+				if name:
+					# if there was an existing holiday_type, append
+					return name if pd.isna(daily_holiday_name_map.get(d.date(), pd.NA)) else name
+				return ""
+			# create a simple mapping of date->existing holiday_type to avoid repeated lookups
+			daily_holiday_name_map = {row.Date.date(): row.holiday_type for row in daily.itertuples()}
+			# update holiday_type where jewish holiday present
+			daily.loc[daily['is_jewish_holiday'] == 1, 'holiday_type'] = daily.loc[daily['is_jewish_holiday'] == 1, 'Date'].apply(
+				lambda d: name_map.get(d.date(), "Jewish holiday")
+			)
+		except Exception:
+			# don't fail the pipeline if importing the helper fails
+			pass
 
 	return daily
 
