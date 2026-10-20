@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Campus Incident Trends
+=======
+# Analyzing Antisemitism: Insights with ML
+>>>>>>> ffac539855540711c5880744c525433d522f5015
 
 **How did the language and types of reported campus incidents change during 2023-24?**
 
@@ -23,6 +27,7 @@ The model suggests six overlapping language groups associated with rallies,
 demonstrations, walkouts/protests, chants, signs, and resistance-related slogans.
 These descriptions of the groups are tentative, not independently verified labels.
 
+<<<<<<< HEAD
 - The group containing **resistance-related wording** fell from **21.4%** of
   October reports to **9.7%** in May.
 - The **walkout/protest-wording group** rose from **11.2%** in October to
@@ -31,6 +36,15 @@ These descriptions of the groups are tentative, not independently verified label
   Its share also increased, from **10.9% to 15.9%**.
 - **37.3% of reports were mixed**, with no single theme accounting for at least
   half their model weight. This warns against forcing every report into a neat category.
+=======
+Major areas of focus included:
+- Cleaning and normalizing raw incident rows from `data/campus_reports.csv` (2000+ individual incident reports)
+- Implementing robust holiday labeling (including a canonical per-day expansion of user-provided Jewish holiday ranges)  
+- Aggregating events into daily metrics and building inspection CSVs for manual review  
+- Building short, executable notebooks to reproduce figures and statistical tests  
+- Structuring outputs and models so results are easy to share (`outputs/`, `models/`)  
+- Designing the code so it runs portably (parquet→CSV fallback, venv-aware instructions)
+>>>>>>> ffac539855540711c5880744c525433d522f5015
 
 These numbers refer to the model's strongest-match groups, not every report
 mentioning a word. They are exploratory findings to check against the descriptions,
@@ -67,6 +81,7 @@ Six groups is an exploratory setting, not a proven optimum. The model uses all
 descriptions to understand this dataset; it does not predict future incidents.
 The random seed is fixed so the same data and settings give repeatable results.
 
+<<<<<<< HEAD
 ## Run it
 
 Use Python 3.11 from the repository root:
@@ -114,3 +129,6 @@ establish an incident's classification.
 The next improvement is to review a sample of descriptions from each group and
 compare different group counts, documenting which themes are actually useful.
 No topic-label accuracy or causal effect has been established.
+=======
+This work strengthened skills in data engineering for research, reproducible analysis, and communicating results through notebooks and artifacts.
+>>>>>>> ffac539855540711c5880744c525433d522f5015
