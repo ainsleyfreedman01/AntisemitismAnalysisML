@@ -80,6 +80,8 @@ seasonal, and overall incident trends.
 Six groups is an exploratory setting, not a proven optimum. The model uses all
 descriptions to understand this dataset; it does not predict future incidents.
 The random seed is fixed so the same data and settings give repeatable results.
+Numerical libraries can rank equally weighted keywords differently across platforms.
+The tests check theme separation and relevant vocabulary, not a specific tied keyword.
 
 <<<<<<< HEAD
 ## Run it

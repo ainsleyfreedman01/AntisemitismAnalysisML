@@ -60,8 +60,29 @@ class ThemeTests(unittest.TestCase):
         self.assertTrue(shares.loc["2024-02"].isna().all())
         np.testing.assert_allclose(shares.loc[["2024-01", "2024-03"]].sum(axis=1), 1)
         self.assertTrue(assigned["dominant_weight_share"].between(0, 1).all())
-        self.assertTrue(any("graffiti" in words for words in summary["keywords"]))
-        self.assertTrue(any("rally" in words for words in summary["keywords"]))
+        expected_vocabulary = {
+            "Vandalism": {"graffiti", "painted", "wall", "spray", "paint", "building"},
+            "Protest/Action": {"rally", "march", "banners", "crowd", "demonstration"},
+        }
+        matched_themes = set()
+        for incident_type, vocabulary in expected_vocabulary.items():
+            with self.subTest(incident_type=incident_type):
+                themes = assigned.loc[
+                    reports["Incident Type"].eq(incident_type), "theme"
+                ].unique()
+                self.assertEqual(len(themes), 1)
+                self.assertIn(themes[0], {"Theme 1", "Theme 2"})
+                matched_themes.add(themes[0])
+                row = summary.set_index("theme").loc[themes[0]]
+                self.assertEqual(row["reports"], 18)
+                # Equally weighted terms can cross the top-eight cutoff on other platforms.
+                keywords = row["keywords"].split(", ")
+                self.assertEqual(len(keywords), 8)
+                for phrase in keywords:
+                    words = set(phrase.split())
+                    self.assertTrue(words)
+                    self.assertLessEqual(words, vocabulary)
+        self.assertEqual(len(matched_themes), 2)
 
     def test_unmatched_description_not_forced_into_a_theme(self) -> None:
         reports = reports_fixture()
